@@ -1,0 +1,5 @@
+.error {
+    color: var(--bs-form-invalid-color);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
