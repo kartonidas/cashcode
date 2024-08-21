@@ -10,11 +10,7 @@
         </div>
     </div>
     <div class="container pt-3">
-        @if(request()->session()->get('status'))
-            <div class="alert alert-success" role="alert">
-                {{ request()->session()->get('status') }}
-            </div>
-        @endif
+        @include("partials.messages")
         <livewire:show-products />
     </div>
 @endsection

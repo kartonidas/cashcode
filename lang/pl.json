@@ -32,5 +32,6 @@
     "results" : "wyników",
     "Product successfully updated." : "Produkt został zaktualizowany",
     "Product successfully added." : "Produkt został dodany",
-    "Adding a product" : "Dodawanie produktu"
+    "Adding a product" : "Dodawanie produktu",
+    "Product does not exists" : "Produkt nie istnieje"
 }

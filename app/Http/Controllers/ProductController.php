@@ -37,7 +37,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         if(!$product)
-            return redirect()->back()->withErrors(__('Product does not exists'));
+            return redirect()->route('products')->withErrors(__('Product does not exists'));
         
         return view('products.edit', ['product' => $product]);
     }
