@@ -33,5 +33,9 @@
     "Product successfully updated." : "Produkt został zaktualizowany",
     "Product successfully added." : "Produkt został dodany",
     "Adding a product" : "Dodawanie produktu",
-    "Product does not exists" : "Produkt nie istnieje"
+    "Product does not exists" : "Produkt nie istnieje",
+    "Palladium" : "Pallad",
+    "Gold" : "Złoto",
+    "Silver" : "Srebro",
+    "Platinum" : "Platyna"
 }
