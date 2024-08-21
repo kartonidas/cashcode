@@ -16,6 +16,7 @@ class CreateProduct extends Component
     public $change = 0;
     public $basePrice = 0;
     public $profit = 0;
+    public $profitPrefix = '';
     public $finalPrice = 0;
     public Product|null $product = null;
     
@@ -26,12 +27,7 @@ class CreateProduct extends Component
     
     public function save()
     {
-        $validated = $this->validate([ 
-            'name' => ['required', 'max:200'],
-            'metal' => ['required', Rule::in(array_keys(Product::allowedMetals()))],
-            'weight' => ['required', 'numeric', 'min:0.01'],
-            'change' => ['required', 'numeric', 'min:0'],
-        ]);
+        $validated = $this->validate($this->getValidateRule());
         
         if(!$this->product)
         {
@@ -67,9 +63,14 @@ class CreateProduct extends Component
     
     public function calculate()
     {
+        $rule = $this->getValidateRule();
+        unset($rule["name"]);
+        $validated = $this->validate($rule);
+        
         $this->basePrice = 0;
         $this->finalPrice = 0;
         $this->profit = 0;
+        $this->profitPrefix = '';
         
         if(!empty($this->metal))
         {
@@ -80,7 +81,20 @@ class CreateProduct extends Component
                 $this->basePrice = round($prices[$this->metal] * $this->weight, 2);
                 $this->finalPrice = round($this->basePrice * (100 + $this->change)/100, 2);
                 $this->profit = round($this->finalPrice - $this->basePrice, 2);
+                
+                if($this->profit > 0)
+                    $this->profitPrefix = '+';
             }
         }
+    }
+    
+    private function getValidateRule() : array
+    {
+        return [ 
+            'name' => ['required', 'max:200'],
+            'metal' => ['required', Rule::in(array_keys(Product::allowedMetals()))],
+            'weight' => ['required', 'numeric', 'min:0.01'],
+            'change' => ['required', 'numeric', 'min:0'],
+        ];
     }
 }

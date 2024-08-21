@@ -28,14 +28,14 @@
                         </div>
                         <div class="mb-3">
                             <label for="inputWeight" class="form-label mb-0">{{ __('Weight (g)') }}</label>
-                            <input type="number" step="0.01" min="0.01" class="form-control" name="weight" id="inputWeight" wire:model="weight" x-on:keypress="$wire.calculate()">
+                            <input type="number" step="0.01" min="0.01" class="form-control" name="weight" id="inputWeight" wire:model="weight" x-on:keypress="$wire.calculate()" x-on:change="$wire.calculate()">
                             <div>
                                 @error('weight') <span class="error">{{ $message }}</span> @enderror 
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="inputChange" class="form-label mb-0">{{ __('Change (%)') }}</label>
-                            <input type="number" step="0.01"  class="form-control" name="change" id="inputChange" wire:model="change" x-on:keypress="$wire.calculate()">
+                            <input type="number" step="0.01" min="0" class="form-control" name="change" id="inputChange" wire:model="change" x-on:keypress="$wire.calculate()" x-on:change="$wire.calculate()">
                             <div>
                                 @error('change') <span class="error">{{ $message }}</span> @enderror 
                             </div>
@@ -55,7 +55,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label mb-0">{{ __('Change') }}</label>
-                            <div class="fs-4 fw-bold">{{ Number::format($profit, locale: 'pl') }}</div>
+                            <div class="fs-4 fw-bold">{{ $profitPrefix }}{{ Number::format($profit, locale: 'pl') }}</div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label mb-0">{{ __('Final price') }}</label>

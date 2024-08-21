@@ -21,7 +21,7 @@
                     <td class="align-middle">{{ Number::format($product->weight, locale: 'pl') }}</td>
                     <td class="align-middle">{{ Number::currency($product->calculateBasePrice(), in: 'PLN', locale: 'pl') }}</td>
                     <td class="align-middle">
-                        +{{ Number::format($product->change, locale: 'pl') }}%
+                        @if($product->change > 0){{ '+' }}@endif{{ Number::format($product->change, locale: 'pl') }}%
                         <div>
                             ({{ Number::currency($product->calculateProfit(), in: 'PLN', locale: 'pl') }})
                         </div>
